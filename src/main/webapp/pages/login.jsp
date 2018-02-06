@@ -85,7 +85,7 @@
             data:$("#form1").serialize(),
             success:function(data){
                 if(data.flag == 0){
-                    layer.alert(data.Message);
+                    layer.alert(data.message);
                     return;
                 }
                 if(data.flag == 1){
