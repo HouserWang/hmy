@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 if (session.getAttribute("userName") == null){
-	response.sendRedirect("/jsps/login.jsp");
+	response.sendRedirect("/pages/login.jsp");
 }
 %>
 

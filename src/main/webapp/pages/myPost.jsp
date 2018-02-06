@@ -3,7 +3,7 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 /* if (session.getAttribute("userName") == null){
-	response.sendRedirect("/jsps/login.jsp");
+	response.sendRedirect("/pages/login.jsp");
 } */
 %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="list-group">
                 <a class="list-group-item active">我的帖子 </a>
                 <div class="list-group-item">
-                    <a href="<%=path%>/jsps/post.jsp" style="color:grey">
+                    <a href="<%=path%>/pages/post.jsp" style="color:grey">
                         <h4 class="list-group-item-heading" style="color:black">
                         <c:forEach items="${mytopicList}" var="topics" >
                   

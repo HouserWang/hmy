@@ -26,7 +26,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 
 	<div class="cont-main clearfix">
-    <form id="form1" method="post" action="jsps/mydeal.jsp" >
+    <form id="form1" method="post" action="pages/mydeal.jsp" >
        <div class="login form">
 		  <div class="group">
 				<div class="group-ipt email">

@@ -35,12 +35,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <nav class="navbar navbar-inverse" role="navigation">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">湖北经济学院BBS论坛</a>
+                <a class="navbar-brand" href="<%=path%>/allIndex.do">湖北经济学院BBS论坛</a>
             </div>
             
             <div>
       <ul class="nav navbar-nav">
-         <li><a href="<%=path%>/jsps/test.jsp">首页</a></li>
+         <li><a href="<%=path%>/allIndex.do">首页</a></li>
           
           <li><a href="<%=request.getContextPath() %>/showmodel.do">模块分类</a></li>
           <li><a href="<%=request.getContextPath() %>/more.action?type=-1&&page=1">论坛新帖</a></li>
@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <li><a href="<%=path%>/pages/change-info.jsp">个人信息</a></li>
                             <li><a href="<%=path+"/showMyTopic.do"%>">我的帖子</a></li>
                             <li><a href="<%=path+"/pages/myMessage.jsp"%>">我的留言</a></li>
-                            <li><a href="<%=request.getContextPath()%>/jsps/publish_post.jsp">我要发帖</a></li>
+                            <li><a href="<%=request.getContextPath()%>/pages/publish_post.jsp">我要发帖</a></li>
                             <li class="divider"></li>
                             <li><a href="<%=request.getContextPath()%>/exit.do">退出登陆</a></li>
                         </ul>
@@ -89,8 +89,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             ${userName} <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li ><a href="<%=path%>/jsps/addNotice.jsp">发布公告</a></li>
-                            <li><a href="<%=path%>/jsps/create_model.jsp">创建模块</a></li>
+                            <li ><a href="<%=path%>/pages/addNotice.jsp">发布公告</a></li>
+                            <li><a href="<%=path%>/pages/create_model.jsp">创建模块</a></li>
 			                <li  ><a href="<%=path%>/manage/change-admin.jsp">资料修改</a></li>
 			                <li><a href="<%=path%>/manage/bestpost.jsp">精华帖请求</a></li>
 			                <li><a href="<%=path%>/manage/limit.jsp">封锁用户</a></li>
