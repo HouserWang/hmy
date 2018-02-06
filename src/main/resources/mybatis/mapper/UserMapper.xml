@@ -19,7 +19,7 @@ select * from bbs_user where userId=#{id}
 </insert>
 
 <!-- 检查邮箱存在 -->
-<select id="checkEmail" parameterType="java.lang.String"  resultType="java.lang.String">
+<select id="checkEmail" parameterType="java.lang.String"  resultType="java.lang.Integer">
    select count(*) from bbs_user where email=#{id}
 </select>
 <!--核对密码（邮箱验证之后）-->

@@ -132,7 +132,7 @@
         </c:if>
     </div>
     <div></div>
-    <form action="<%=path%>/topic/reply.do" method="post">
+    <form action="<%=path%>/topic/reply.do" method="post" id="form">
     <div style="height: 200px;margin: 70px auto; width: 800px;">
         <h4>发表回复</h4>
             <input type="hidden" name="topicId">
@@ -153,9 +153,24 @@
 </div>
 
 <script type="text/javascript">
-    var url = '<%=path%>/topic/reply.do';
     function submit() {
-        
+        $.ajax({
+            url:"${pageContext.request.contextPath}/topic/reply.do",
+            type:"post",
+            data:$("#form").serialize(),
+            success:function(data){
+                if(data.flag == 0){
+                    layer.alert(data.Message);
+                    return;
+                }
+                if(data.flag == 1){
+                    history.go(0);
+                }
+            },
+            error:function(e){
+                alert(e.flag);
+            }
+        });
     }
 </script>
 
