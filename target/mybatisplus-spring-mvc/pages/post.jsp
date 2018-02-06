@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page import="org.springframework.context.support.ClassPathXmlApplicationContext" %>
 <%@page import="org.springframework.context.ApplicationContext" %>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" autoFlush="false" buffer="1000kb" %>
@@ -28,7 +29,7 @@
 <div style="height:100%">
 
     <jsp:include page="header.jsp"/>
-    <div class="container" style="margin-top: 50px">
+    <div class="container" style="border:2px;margin-top: 50px;">
 
 
         <div class="row">
@@ -130,47 +131,33 @@
         </c:forEach>
         </c:if>
     </div>
-
-
-    <ul class="pagination pagination-lg" style="float: right;margin-right: 20px;">
-
-        <li><a href=" #"> &laquo;</a></li>
-
-
-        <li class="active"><a href="#"> </a></li>
-
-        <li><a href="#"> </a></li>
-
-        <li><a href="#>">&raquo;</a></li>
-
-
-        <li class="active"><a href="#"> </a></li>
-
-
-        <li><a href="#">&raquo;</a></li>
-
-
-    </ul>
-    <br>
-
-
+    <div></div>
+    <form action="<%=path%>/topic/reply.do" method="post">
     <div style="height: 200px;margin: 70px auto; width: 800px;">
-        <form action="<%=path%>/reply.do" method="post">
-            <input type="hidden" name="postId">
-            <input type="hidden" name="page">
+        <h4>发表回复</h4>
+            <input type="hidden" name="topicId">
             <div style="margin: 5px auto;height: 100px; width: 800px">
-                <textarea id="TextArea1" cols="20" rows="1" name="content" class="ckeditor"></textarea>
+                <textarea id="TextArea1" cols="100" rows="15" name="content" class="ckeditor"></textarea>
 
             </div>
-            <s:fielderror fieldName="limit"></s:fielderror>
-            <div style="float:right;margin: 60px auto">
-                <input type="submit" class="btn btn-primary" style="width: 60px;" value="回复"></input>
-            </div>
-        </form>
+
     </div>
+    <div style="margin:0 auto;width:200px;">
+        <input type="button" class="btn btn-large btn-success" onclick="submit()" value="回复"></input>
+
+    </div>
+    </form>
+    <div style="height: 20px"></div>
 
 
 </div>
+
+<script type="text/javascript">
+    var url = '<%=path%>/topic/reply.do';
+    function submit() {
+        
+    }
+</script>
 
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
 
@@ -36,11 +37,13 @@ public class ReplyController {
  */
 
     @PostMapping("/reply")
-    public ResultVO reply(ReplyDTO replyDTO, @SessionAttribute Integer userId) {
+    public ResultVO reply(ReplyDTO replyDTO, HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        Integer userId = (Integer) session.getAttribute("userId");
         if (Objects.isNull(userId)) {
             return ResultVO.error("请先登陆");
         }
-        boolean reply = replyService.saveReply(replyDTO, 0);
+        boolean reply = replyService.saveReply(replyDTO, userId);
         if (reply) {
             return ResultVO.success("回复成功");
         } else {
@@ -49,7 +52,9 @@ public class ReplyController {
     }
 
     @PostMapping("/giveLike")
-    public ResultVO giveLike(Integer topicId, @SessionAttribute Integer userId) {
+    public ResultVO giveLike(Integer topicId, HttpServletRequest request) {
+        HttpSession session = request.getSession(true);
+        Integer userId = (Integer) session.getAttribute("userId");
         if (Objects.isNull(userId)) {
             return ResultVO.error("请先登陆");
         }
