@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.mapper.UserMapper">
+
+
+<!-- 根据email查找用户 -->
+<select id="findUserByEmail" parameterType="java.lang.String" resultType="cn.itcast.pojo.User">
+select * from bbs_user where email=#{id}
+</select>
+ <!-- 根据id查找用户 -->
+<select id="findUserById" parameterType="java.lang.String" resultType="cn.itcast.pojo.User">
+select * from bbs_user where userId=#{id}
+</select>
+ <!-- 用户注册 -->
+<insert id="addUser" parameterType="cn.itcast.pojo.User">
+ insert into bbs_user(userId,userName,userPassword,email,regDate) value(#{userId},#{userName},#{userPassword},#{email},now())
+</insert>
+
+<!-- 检查邮箱存在 -->
+<select id="checkEmail" parameterType="java.lang.String"  resultType="java.lang.String">
+   select count(*) from bbs_user where email=#{id}
+</select>
+<!--核对密码（邮箱验证之后）-->
+<select id="checkPwd" parameterType="java.lang.String" resultType="java.lang.String">
+ select userPassword from bbs_user where email=#{id}
+</select>
+<!-- 用户信息修改 -->
+<update id="updateUser" parameterType="cn.itcast.pojo.User" >
+    update bbs_user
+    <set >
+    
+      <if test="_parameter != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="_parameter != null" >
+         email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="_parameter != null" >
+         userSex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="_parameter != null" >
+         userPassword = #{userPassword,jdbcType=VARCHAR},
+      </if>
+       <if test="_parameter != null" >
+        imageAddr = #{imageAddr,jdbcType=BLOB},
+      </if>
+    </set>
+    where userId = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>
