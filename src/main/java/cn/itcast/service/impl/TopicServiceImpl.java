@@ -51,7 +51,7 @@ public class TopicServiceImpl implements TopicService {
 
 
 	@Override
-	public List<Topic> showMyTopic(String userId) {
+	public List<Topic> showMyTopic(Integer userId) {
 		 
 		return topicmapper.showMyTopic(userId);
 	}
