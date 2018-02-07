@@ -21,7 +21,7 @@ select * from bbs_topic t order by t.postDate desc limit 6
 select * from bbs_topic where topicId=#{id}
 </select>
 
-<select id="showMyTopic" parameterType="java.lang.String" resultType="cn.itcast.pojo.Topic">
+<select id="showMyTopic" parameterType="java.lang.Integer" resultType="cn.itcast.pojo.Topic">
 select * from bbs_topic where userId=#{id}
 </select>
 

@@ -71,6 +71,7 @@ public class TopicController {
         request.setAttribute("userName", topicext.getUser().getUserName());
         request.setAttribute("replyCount", topicext.getPostDate());
         request.setAttribute("replies",replies);
+        request.setAttribute("topicId",topicid);
 
         return "post";
 
@@ -79,7 +80,7 @@ public class TopicController {
     @RequestMapping("showMyTopic")
     public String showMyTopic(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
-        String userId = (String) session.getAttribute("userId");
+        Integer userId = (Integer) session.getAttribute("userId");
         List<Topic> mytopicList = (List<Topic>) topicService.showMyTopic(userId);
         session.setAttribute("mytopicList", mytopicList);
         return "myPost";

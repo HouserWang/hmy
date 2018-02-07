@@ -12,7 +12,7 @@ public interface TopicService {
 
     Topic showTopic(Integer topicid);
 
-    List<Topic> showMyTopic(String userId);//个人帖子查询集合
+    List<Topic> showMyTopic(Integer userId);//个人帖子查询集合
 
     TopicExt findTopicAndUser(Integer topicId);//个人帖子查询集合
 
