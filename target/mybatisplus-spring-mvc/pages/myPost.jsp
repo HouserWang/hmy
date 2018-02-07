@@ -34,8 +34,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" ><a href="<%=path%>/pages/change-info.jsp">资料修改</a></li>
                 <li role="presentation" class="active"><a href="<%=path%>/showMyTopic.do">我的帖子</a></li>
-                <li role="presentation"><a href="<%=path%>/pages/records.jsp">申请记录</a></li>
-                <!--<li role="presentation"><a href="#">Messages</a></li>-->
             </ul>
         </div>
 
