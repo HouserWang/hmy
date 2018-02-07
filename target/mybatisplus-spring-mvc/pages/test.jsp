@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body> 
 <!--  <div style="position:fixed;top:23px;">woshi</div>固定位置在顶端 -->
-<!--  <form name="form1" action="jsps/error.jsp">
+<!--  <form name="form1" action="pages/error.jsp">
 <select name="sel" size="1" onChange="submit()">
 <option value="yi">1111</option>
 <option value="er">2222</option>
