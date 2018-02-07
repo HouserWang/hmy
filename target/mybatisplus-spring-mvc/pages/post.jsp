@@ -119,10 +119,6 @@
         </c:if>
     </div>
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 45985d4d2d9887059547db9350cb80359b8fcc10
     <form action="<%=path%>/topic/reply.do" method="post" id="form">
     <div style="margin: 0 auto 80px; width: 1000px;">
         <h4>发表回复</h4>
@@ -151,15 +147,11 @@
             data:$("#form").serialize(),
             success:function(data){
                 if(data.flag == 0){
-                    layer.alert(data.message);
+                    layer.alert(data.Message);
                     return;
                 }
                 if(data.flag == 1){
-                    var topicId = $("#topicId").val();
-                    var url = "111";
-                    // var url = "<%=request.getContextPath()%>/showTopicAndReply.do?topicid="+topicId;
-                    alert(url);
-                    //location.href = url;
+                    history.go(0);
                 }
             },
             error:function(e){
