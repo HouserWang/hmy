@@ -5,6 +5,7 @@ import cn.itcast.pojo.Reply;
 import cn.itcast.pojo.Topic;
 import cn.itcast.pojo.TopicExt;
 import cn.itcast.service.TopicService;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,6 +13,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Objects;
 
 
 @Controller
@@ -64,14 +66,16 @@ public class TopicController {
         Integer topicid = Integer.parseInt(request.getParameter("topicid"));
         TopicExt topicext = topicService.findTopicAndUser(topicid);
         List<ReplyVO> replies = topicService.findReplies(topicid);
+        Integer likeCount = topicService.findLikeCount(topicid);
         request.setAttribute("title", topicext.getTitle());
         request.setAttribute("content", topicext.getContent());
         request.setAttribute("postDate", topicext.getPostDate());
         request.setAttribute("userSex", topicext.getUser().getUserSex());
         request.setAttribute("userName", topicext.getUser().getUserName());
         request.setAttribute("replyCount", topicext.getPostDate());
-        request.setAttribute("replies",replies);
-        request.setAttribute("topicId",topicid);
+        request.setAttribute("replies", replies);
+        request.setAttribute("topicId", topicid);
+        request.setAttribute("likeCount", likeCount);
 
         return "post";
 
@@ -79,10 +83,14 @@ public class TopicController {
 
     @RequestMapping("showMyTopic")
     public String showMyTopic(HttpServletRequest request) {
-        HttpSession session = request.getSession(true);
-        Integer userId = (Integer) session.getAttribute("userId");
-        List<Topic> mytopicList = (List<Topic>) topicService.showMyTopic(userId);
-        session.setAttribute("mytopicList", mytopicList);
+        //HttpSession session = request.getSession(true);
+        //Integer userId = (Integer) session.getAttribute("userId");
+
+        Integer current = (Integer) request.getAttribute("current");
+        Integer size = (Integer) request.getAttribute("size");
+        Page<Topic> page = new Page<>(Objects.isNull(current) ? 1 : current, Objects.isNull(size) ? 10 : size);
+        Page<Topic> pager = topicService.showMyTopic(page, 1);
+        request.setAttribute("pager", pager);
         return "myPost";
 
     }
@@ -93,10 +101,6 @@ public class TopicController {
 
         return "myPost";
 
-    } 
-/*
-	@PostMapping("handleLike")
-    public ResultVO handleLike(){
-	}
-     */
+    }
+
 }

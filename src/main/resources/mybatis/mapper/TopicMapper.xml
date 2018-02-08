@@ -25,6 +25,12 @@ select * from bbs_topic where topicId=#{id}
 select * from bbs_topic where userId=#{id}
 </select>
 
+<update id="incReplyCount" parameterType="java.lang.Integer">
+  UPDATE bbs_topic
+  SET replyCount = replyCount + 1
+    WHERE topicId = #{topicId}
+</update>
+
 
 <resultMap type="cn.itcast.pojo.TopicExt" id="TopicAndUser">
  <!-- 帖子信息 -->

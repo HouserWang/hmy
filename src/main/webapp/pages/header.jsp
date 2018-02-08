@@ -18,11 +18,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link href="css/bootstrap.css" rel="stylesheet">
     <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
     <script type="text/javascript" src="js/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
     <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="component/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="js/publish-post.js"></script>
-      
+      <script src='js/layer/layer.js' type="text/javascript"></script>
     <script type="text/javascript">
   	$(function(){
   	 $(".dropdown-toggle").dropdown('toggle');

@@ -44,8 +44,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="list-group-item">
                     <a href="<%=path%>/pages/post.jsp" style="color:grey">
                         <h4 class="list-group-item-heading" style="color:black">
-                        <c:forEach items="${mytopicList}" var="topics" >
-                  
+                        <c:forEach items="${pager.records}" var="topics" >
+
                          <a href="<%=request.getContextPath()%>/showTopicAndReply.do?topicid=${topics.getTopicId()}" class="list-group-item" style="height: 70px;">
                          <h4 class="list-group-item-heading">[${topics.getTitle()}]</h4>
                          <p class=" text-right" style="float: right;margin-right: 20px;">发帖人:&nbsp;评论量: ${topics.getReplyCount()}&nbsp;发表日期:${topics.getPostDate()}</p>
@@ -77,24 +77,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  
                            
 <div align="center">
-    <a href="${pageContext.request.contextPath}/action_topic_fenye?offset=1">首页</a> 
+    <a href="${pageContext.request.contextPath}/showMyTopic?current=1">首页</a>
     <!-- 判断是不是首页 不是则显示上一页-->
-    <c:if test="${currpage==1}">
+    <c:if test="${pager.current==1}">
                                                          上一页&nbsp;
     </c:if>
-    <c:if test="${currpage>1}">
-                <a href="${pageContext.request.contextPath}/action_topic_fenye?offset=${currpage*5-10}">上一页</a>&nbsp;
+    <c:if test="${pager.current>1}">
+                <a href="${pageContext.request.contextPath}/showMyTopic?current=${current*5-10}">上一页</a>&nbsp;
     </c:if> 
-     <c:if test="${currpage==4}">
+     <c:if test="${pager.current==4}">
                                                          下一页&nbsp;
     </c:if>
-    <c:if test="${currpage<4}">
-                <a href="${pageContext.request.contextPath}/action_topic_fenye?offset=${currpage*5+1}">下一页</a>&nbsp;
+    <c:if test="${pager.current<4}">
+                <a href="${pageContext.request.contextPath}/showMyTopic?current=${current*5+1}">下一页</a>&nbsp;
     </c:if> 
     <a href="${pageContext.request.contextPath}/action_topic_fenye?offset=15">尾页</a>    
     <!--四舍五入进一 -->
     <%--  <fmt:formatNumber type="number" value="  ${5/6} " maxFractionDigits="0"></fmt:formatNumber> --%>
-             第${currpage} 页/共 <fmt:formatNumber type="number" value="  ${(allrow+4-(allrow+4)%5)/5} "></fmt:formatNumber>页   
+             第${pager.current} 页/共 <fmt:formatNumber type="number" value="  ${(allrow+4-(allrow+4)%5)/5} "></fmt:formatNumber>页
     <form action="dept!getAllDeptByPage.action" method="post" id="form">  
                                                       跳转到<input type="text" name="pageInfo.pagenum" id="goPage" size="1"/>页  
     <input type="button" value="go" id="go"/>  

@@ -26,7 +26,6 @@ return ;
     <script src="../../static/js/jquery.min.js"></script>
     <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
     <link href="css/index.css" rel="stylesheet">
-	 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 	<!-- <link href="css/index.css" rel="stylesheet"> -->
   </head>
   

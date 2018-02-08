@@ -16,8 +16,6 @@ return ;
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-    <script type="text/javascript" src="component/ckeditor/ckeditor.js"></script>
-    <script type="text/javascript" src="js/publish-post.js"></script>
  <script type="text/javascript">
  
  

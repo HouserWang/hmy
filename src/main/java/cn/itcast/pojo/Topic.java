@@ -1,8 +1,13 @@
 package cn.itcast.pojo;
 
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableName;
+
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Topic {
+@TableName("bbs_topic")
+public class Topic extends Model<Topic>{
 
 	private Integer topicId;
 	private String title;
@@ -57,5 +62,9 @@ public class Topic {
 	public void setReplyCount(Integer replyCount) {
 		this.replyCount = replyCount;
 	}
-	
+
+	@Override
+	protected Serializable pkVal() {
+		return this.topicId;
+	}
 }
