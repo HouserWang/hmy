@@ -82,4 +82,9 @@ public class TopicServiceImpl implements TopicService {
 		return new GiveLike().selectCount(new Condition().eq("topicId",topicId).eq("likeState",1));
 	}
 
+	@Override
+	public Page<Topic> showModelTopics(Page<Topic> page , Integer modelId){
+		return new Topic().selectPage(page, new Condition().eq("modelId",modelId));
+	}
+
 }

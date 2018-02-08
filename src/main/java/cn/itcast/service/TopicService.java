@@ -24,4 +24,6 @@ public interface TopicService {
     List<ReplyVO> findReplies(Integer topicId);
 
     Integer findLikeCount(Integer topicId);
+
+    Page<Topic> showModelTopics(Page<Topic> page , Integer modelId);
 }

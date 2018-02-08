@@ -7,6 +7,7 @@ import cn.itcast.pojo.TopicExt;
 import cn.itcast.service.TopicService;
 import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
@@ -101,6 +102,17 @@ public class TopicController {
 
         return "myPost";
 
+    }
+
+    @GetMapping("showModelPosts")
+    public String showModelPosts(Integer modelId,String modelName, HttpServletRequest request) {
+        Integer current = (Integer) request.getAttribute("current");
+        Integer size = (Integer) request.getAttribute("size");
+        Page<Topic> page = new Page<>(Objects.isNull(current) ? 1 : current, Objects.isNull(size) ? 10 : size);
+        Page<Topic> pager = topicService.showModelTopics(page, modelId);
+        request.setAttribute("pager", pager);
+        request.setAttribute("modelName", modelName);
+        return "allPosts";
     }
 
 }
