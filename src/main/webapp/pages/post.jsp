@@ -21,8 +21,6 @@
     <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
     <meta http-equiv="description" content="This is my page">
 
-    <link href="css/post-detail.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -65,7 +63,8 @@
 
                 <div class="reply-time" style="position: absolute;width:100%;left: 0; bottom: 7px;padding-left: 20px;">
                     <div style="float: right;margin-right: 14px;" >
-                       赞&nbsp;&nbsp;<img src="image/zan.png" alt="..." style="width:24px;" >
+                       赞&nbsp;&nbsp;<img src="image/zan.png" alt="..." style="width:24px;" onclick="giveLike()">
+                        ${likeCount}
                     </div>
                     <span style="color: gray;"> 发表于:<%=request.getAttribute("postDate") %> </span>
                 </div>
@@ -119,14 +118,14 @@
         </c:if>
     </div>
 
-    <form action="<%=path%>/topic/reply.do" method="post" id="form">
+    <form id="form1">
     <div style="margin: 0 auto 80px; width: 1000px;">
         <h4>发表回复</h4>
-        <input type="hidden" name="topicId">
+        <input type="hidden" name="topicId" value="${topicId}" id="topicId">
         <div style="position:relative;margin: 5px auto;">
             <textarea id="TextArea1" cols="140" rows="10" name="content" class="ckeditor"></textarea>
             <div style="position: absolute;right: 10px;bottom: 10px;">
-                <input type="button" class="btn btn-large btn-success" onclick="submit()" value="回复"></input>
+                <button type="button" class="btn btn-large btn-success" onclick="reply()">回复</button>
 
             </div>
         </div>
@@ -140,22 +139,46 @@
 </div>
 
 <script type="text/javascript">
-    function submit() {
+
+    function reply() {
         $.ajax({
-            url:"${pageContext.request.contextPath}/topic/reply.do",
+            url:"${pageContext.request.contextPath}/reply.do",
             type:"post",
-            data:$("#form").serialize(),
+            data:$("#form1").serialize(),
             success:function(data){
                 if(data.flag == 0){
-                    layer.alert(data.Message);
+                    alert(data.message);
                     return;
                 }
                 if(data.flag == 1){
-                    history.go(0);
+                    var topicId = $("#topicId").val();
+                    window.location.href="<%=request.getContextPath()%>/showTopicAndReply.do?topicid="+topicId;
                 }
             },
             error:function(e){
-                alert(e.flag);
+                alert("系统错误");
+            }
+        });
+    }
+
+    function giveLike() {
+        var topicId = $("#topicId").val();
+        $.ajax({
+            url:"${pageContext.request.contextPath}/giveLike.do",
+            type:"post",
+            data:"topicId="+topicId,
+            dataType:"json",
+            success:function(data){
+                if(data.flag == 0){
+                    alert(data.message);
+                    return;
+                }
+                if(data.flag == 1){
+                    window.location.href="<%=request.getContextPath()%>/showTopicAndReply.do?topicid="+topicId;
+                }
+            },
+            error:function(e){
+                alert("系统错误");
             }
         });
     }

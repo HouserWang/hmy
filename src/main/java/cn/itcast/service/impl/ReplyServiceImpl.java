@@ -2,8 +2,10 @@ package cn.itcast.service.impl;
 
 import cn.itcast.common.ReplyDTO;
 import cn.itcast.mapper.ReplyMapper;
+import cn.itcast.mapper.TopicMapper;
 import cn.itcast.pojo.GiveLike;
 import cn.itcast.pojo.Reply;
+import cn.itcast.pojo.Topic;
 import cn.itcast.service.ReplyService;
 import com.baomidou.mybatisplus.mapper.Condition;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class ReplyServiceImpl implements ReplyService {
 
     @Resource
     private ReplyMapper replyMapper;
+
+    @Resource
+    private TopicMapper topicMapper;
 
     @Override
     public void addReply(Integer topicId) {
@@ -41,8 +46,10 @@ public class ReplyServiceImpl implements ReplyService {
         reply.setTopicId(replyDTO.getTopicId());
         reply.setReplyContent(replyDTO.getContent());
         reply.setUserId(userId);
-        return reply.insert();
-
+        boolean isTrue = reply.insert();
+        //帖子数量加1
+        topicMapper.incReplyCount(replyDTO.getTopicId());
+        return isTrue;
     }
 
     public boolean dealLike(Integer topicId, Integer userId) {

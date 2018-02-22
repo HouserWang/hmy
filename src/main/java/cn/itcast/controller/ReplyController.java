@@ -4,10 +4,7 @@ import cn.itcast.common.ReplyDTO;
 import cn.itcast.common.ResultVO;
 import cn.itcast.service.ReplyService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +13,6 @@ import java.util.Objects;
 
 
 @Controller()
-@RequestMapping("topic")
 public class ReplyController {
     @Resource
     private ReplyService replyService;
@@ -36,7 +32,8 @@ public class ReplyController {
 	 }
  */
 
-    @PostMapping("/reply")
+    @PostMapping("reply")
+    @ResponseBody
     public ResultVO reply(ReplyDTO replyDTO, HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         Integer userId = (Integer) session.getAttribute("userId");
@@ -52,6 +49,7 @@ public class ReplyController {
     }
 
     @PostMapping("/giveLike")
+    @ResponseBody
     public ResultVO giveLike(Integer topicId, HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         Integer userId = (Integer) session.getAttribute("userId");

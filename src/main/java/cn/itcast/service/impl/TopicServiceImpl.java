@@ -11,14 +11,12 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 
 import cn.itcast.common.ReplyVO;
-import cn.itcast.pojo.Reply;
-import cn.itcast.pojo.Topic;
-import cn.itcast.pojo.User;
+import cn.itcast.pojo.*;
 import com.baomidou.mybatisplus.mapper.Condition;
+import com.baomidou.mybatisplus.plugins.Page;
 import org.springframework.stereotype.Service;
 
 import cn.itcast.mapper.TopicMapper;
-import cn.itcast.pojo.TopicExt;
 import cn.itcast.service.TopicService;
 @Service
 public class TopicServiceImpl implements TopicService {
@@ -51,9 +49,9 @@ public class TopicServiceImpl implements TopicService {
 
 
 	@Override
-	public List<Topic> showMyTopic(Integer userId) {
+	public Page<Topic> showMyTopic(Page<Topic> page , Integer userId) {
 		 
-		return topicmapper.showMyTopic(userId);
+		return page.setRecords(topicmapper.showMyTopic(page,userId));
 	}
 
 
@@ -77,6 +75,16 @@ public class TopicServiceImpl implements TopicService {
 			return replyVO;
 		}).collect(Collectors.toList());
 		return collect;
+	}
+
+	@Override
+	public Integer findLikeCount(Integer topicId){
+		return new GiveLike().selectCount(new Condition().eq("topicId",topicId).eq("likeState",1));
+	}
+
+	@Override
+	public Page<Topic> showModelTopics(Page<Topic> page , Integer modelId){
+		return new Topic().selectPage(page, new Condition().eq("modelId",modelId));
 	}
 
 }

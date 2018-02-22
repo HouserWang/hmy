@@ -98,7 +98,7 @@ public class UserController {
     public String exit(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         session.invalidate();
-        return "test";
+        return "redirect:/allIndex";
 
     }
 

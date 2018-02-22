@@ -32,7 +32,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%
   if(request.getAttribute("T_flag")==null)
   {
-  response.sendRedirect(basePath+"allindex.do");
+  response.sendRedirect(basePath+"allIndex.do");
     
    }
  

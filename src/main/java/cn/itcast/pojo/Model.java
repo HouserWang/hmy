@@ -1,9 +1,12 @@
 package cn.itcast.pojo;
 
+import com.baomidou.mybatisplus.annotations.TableName;
+
 import java.io.Serializable;
 import java.util.Date;
 
-public class Model implements Serializable {
+@TableName("bbs_model")
+public class Model extends com.baomidou.mybatisplus.activerecord.Model<Model>{
 	private String modelName;
 	private Integer modelId;
 	private Integer postsCount;
@@ -32,5 +35,9 @@ public class Model implements Serializable {
 	public void setModelDate(Date modelDate) {
 		this.modelDate = modelDate;
 	}
-	
+
+	@Override
+	protected Serializable pkVal() {
+		return this.modelId;
+	}
 }

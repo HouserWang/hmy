@@ -80,7 +80,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		      <div  class="row">
 		      	<c:forEach items="${modelList}" var="item" >
 		           <div class="col-sm-3" style="margin-bottom:10px;">
-		             <button class="btn btn-default">${item.getModelName()}&nbsp;&nbsp;</button>
+		             <button class="btn btn-default" id="modelId" value="${item.getModelId()}" onclick="toModelTopics()">${item.getModelName()}&nbsp;&nbsp;</button>
 		            </div>
 		        </c:forEach>
 		     </div>
@@ -111,7 +111,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <ul class="list-group">
                 <div class="list-group-item active">
                     论坛新帖
-                    <a href="<%=request.getContextPath() %>/more.action?type=-1&&page=1" style="float: right;color: white">更多>></a>
+                    <%--<a href="<%=request.getContextPath() %>/more.action?type=-1&&page=1" style="float: right;color: white">更多>></a>--%>
                     <!--<p style="float: right"></p>-->
                 </div>
          
@@ -169,6 +169,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     </div>
 </div>
 
+ <script type="text/javascript">
+     function toModelTopics() {
+         var modelId = $("#modelId").val();
+         var modelName = $("#modelId").html();
+         window.location.href="<%=request.getContextPath()%>/showModelPosts.do?modelId="+modelId+"&modelName="+modelName;
 
+     }
+ </script>
 </body>
 </html>
