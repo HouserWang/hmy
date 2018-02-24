@@ -15,7 +15,7 @@ return ;
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>发布帖子页面</title>
  <script type="text/javascript">
  
  

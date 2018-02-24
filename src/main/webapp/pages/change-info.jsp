@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="row">
         <div class="col-xs-3">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" class="active"><a href="<%=path%>/pages/change-info.jsp">资料修改</a></li>
+                <li role="presentation" class="active"><a href="<%=path%>/pages/change-info.jsp">个人信息</a></li>
                 <li role="presentation"><a href="<%=path%>/showMyTopic.do">我的帖子</a></li>
             </ul>
 
@@ -63,16 +63,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">
-                        个人信息修改
+                        查看个人信息
                     </h3>
                 </div>
                 <div class="panel-body">
 				 
-				<form id="form1" action="<%=path%>/updateUser.do" method="post" enctype="multipart/form-data">
+				<%--<form id="form1" action="<%=path%>/updateUser.do" method="post" enctype="multipart/form-data">--%>
+                    <form id="form1" action="<%=path%>/pages/updateUser.jsp" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <a href="photo.do"><img class="avatar left" src="${imageAddr}" id="imgPreview" height="70px;"/></a>请上传你的头像<br/>
+                            <a href="photo.do"><img class="avatar left" src="${imageAddr}" id="imgPreview" height="70px;"/></a><%--请上传你的头像<br/>--%>
                         </div>
-                        <input type="file" id="inputfile" accept="image/*" name="imageAddr" style="height:20px;" value=""><br/>
+                        <%--<input type="file" id="inputfile" accept="image/*" name="imageAddr" style="height:20px;" value=""><br/>--%>
 
                         <div class="form-group">
                             <label for="name">用户名</label>
@@ -96,11 +97,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <dt><label for="user_profile_company">密码</label></dt>
                             <dd><input class="form-control" id="password" name="userPassword" size="30" type="password" width="200px" value="${userPassword}"/></dd>
                         </dl>
-                        <dl class="form-group">
+                        <%--<dl class="form-group">
                             <dt><label for="user_profile_location">重复密码</label></dt>
                             <dd><input class="form-control" id="confirm_password" name="userPassword" size="30" type="password" width="200px" /></dd>
-                        </dl>
-                        <input type="submit" value="提交"> 
+                        </dl> --%>
+                        <input type="submit" value="编辑资料">
                     </form>
                 </div>
             </div>

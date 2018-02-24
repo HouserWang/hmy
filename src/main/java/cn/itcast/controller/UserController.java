@@ -1,5 +1,7 @@
 package cn.itcast.controller;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -48,6 +50,13 @@ public class UserController {
         Integer userId = User.getUserId();
         String role = User.getRole().toString();
         HttpSession session = request.getSession(true);
+//        System.out.println("++++++++++++++++++++++++++++++++++++");
+//        System.out.println("User.getImageAddr() ==== " + User.getImageAddr());
+//        System.out.println("++++++++++++++++++++++++++++++++++++");
+        //未上传照片前都是默认头像
+        if(!StringUtils.hasText(User.getImageAddr())){
+            User.setImageAddr("1519382757553.jpg");
+        }
         session.setAttribute("imageAddr", User.getImageAddr());
         session.setAttribute("userId", userId);
         session.setAttribute("userName", userName);
@@ -104,26 +113,30 @@ public class UserController {
 
     @RequestMapping("setInfo")
     public String setInfo() {
-
         return null;
-
     }
 
-    //信息修改后需要重新登陆
+    //信息修改后如果修改的是密码需要重新登陆，其他不需要
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @RequestMapping("updateUser")
     public String userchange(@RequestParam(value = "imageAddr") MultipartFile imageAddr, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException {
         HttpSession session = request.getSession(true);
         //String path="F:\\java\\apache-tomcat-7.0.57\\webapps\\pic";
         String path = request.getSession().getServletContext().getRealPath("/");
-        System.out.println(path);
         String fileName = imageAddr.getOriginalFilename();
-        String newFileName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
-        java.io.File file = new java.io.File(path, newFileName);
-        if (!file.exists()) {
-            file.mkdirs();
+        String newFileName = (String) request.getSession().getAttribute("imageAddr");
+//        System.out.println("+_+++++++++++++++++++++++++++++");
+//        System.out.println("newFileName + " + newFileName);
+//        System.out.println("+_+++++++++++++++++++++++++++++");
+        if (!("".equals(fileName))){
+            newFileName = System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
+            File file = new File(path, newFileName);
+            if (!file.exists()) {
+                file.mkdir();
+            }
+            imageAddr.transferTo(file);
         }
-        imageAddr.transferTo(file);
-        System.out.println(path);
+        System.out.println("path === " + path);
         Integer userid = (Integer) session.getAttribute("userId");
         String email = request.getParameter("email");
         String userSex = request.getParameter("userSex");
@@ -136,14 +149,15 @@ public class UserController {
         User.setUserName(userName);
         User.setUserPassword(userPassword);
         User.setUserSex(userSex);
-
         User.setImageAddr(newFileName);
-        UserService.updateUser(User);
-        System.out.println(User.getUserName());
-        session.removeAttribute("userName");
-        String username = (String) session.getAttribute("userName");
-        System.out.println(username);
+//        UserService.updateUser(User);
 
+        String oldPassword = (String) request.getSession().getAttribute("oldPassword");
+        if (oldPassword.equals(userPassword)){
+            response.sendRedirect("pages/change-info.jsp");
+        }else {
+            session.removeAttribute("userName");
+        }
         return "test";
 
     }

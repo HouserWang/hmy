@@ -54,7 +54,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <li><a href="<%=request.getContextPath()%>/login.do?role=2">user登录</a></li>    
                 <li><a href="<%=request.getContextPath()%>/success.do">注册</a></li>
                </ul>
-               <p class="navbar-text navbar-right">尊敬的游客您好！</p>
+               <p class="navbar-text navbar-right">尊敬的游客，您好！</p>
              <%}
             if (username!=null&&role.endsWith("2")){
              %>
@@ -74,7 +74,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </ul>
                     </li>
                 </ul>
-                 <p class="navbar-text navbar-right">尊敬的${userName}您好！</p>
+                 <p class="navbar-text navbar-right">亲爱的 ${userName}，欢迎回来！</p>
                
                   <%  }
                  if(username != null&&role.endsWith("1")) {

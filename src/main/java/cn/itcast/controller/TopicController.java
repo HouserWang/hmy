@@ -86,7 +86,7 @@ public class TopicController {
     public String showMyTopic(HttpServletRequest request) {
         //HttpSession session = request.getSession(true);
         //Integer userId = (Integer) session.getAttribute("userId");
-
+//        分页
         Integer current = (Integer) request.getAttribute("current");
         Integer size = (Integer) request.getAttribute("size");
         Page<Topic> page = new Page<>(Objects.isNull(current) ? 1 : current, Objects.isNull(size) ? 10 : size);
