@@ -34,7 +34,7 @@
 
             <div class="col-md-2 post-head" style="background: #eff4fb;height:187px;border-right:1px solid  #d0cfcf;">
                 <!--<img src="img/tm-bg-slide-1.jpg" width="80px" height="80px" class="img-responsive img-circle">-->
-                <img alt="" class="img-responsive img-circle" src=""
+                <img alt="" class="img-responsive img-circle" src="${imageAttr}"
                      style="margin:1px 1px;width: 120px;height: 120px;margin: 10px auto 6px;"/>
                 <%-- <%
                 String args= request.getParameter("userName");
@@ -87,7 +87,7 @@
         <div class="row" style="border:1px solid  #d0cfcf;width: 1000px;margin: 20px auto;" >
 
                 <div class="col-md-2 reply-head" style="background: #eff4fb;border-right:1px solid  #d0cfcf;">
-                    <img alt="" class="img-responsive img-circle" src=""
+                    <img alt="" class="img-responsive img-circle" src="${reply.getImageAttr()}"
                          style="margin:1px 1px;width: 120px;height: 120px;margin: 10px auto 6px;"/>
                     <div style="margin: 3px 7px">
                         <span class="User-info">
@@ -110,6 +110,9 @@
                     </div>
                     <div class="reply-time" style="position: absolute;left: 20px; bottom: 7px;">
                         <span style="color: gray;">回复于:${reply.getReplyTime()} </span>
+                    </div>
+                    <div  style="position: absolute;right: 20px; bottom: 7px;">
+                        <span style="color: gray;">第${reply.getNumber()}楼</span>
                     </div>
                 </div>
 

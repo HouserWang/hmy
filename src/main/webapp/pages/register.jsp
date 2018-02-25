@@ -52,8 +52,7 @@
 $(function(){
     var validate = $("#form1").validate({
         submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
-            alert("提交表单");   
-            form.submit();   //提交表单   
+            form.submit();   //提交表单
         },   
         
         rules:{

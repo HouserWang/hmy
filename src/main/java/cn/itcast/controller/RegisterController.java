@@ -16,7 +16,6 @@ public class RegisterController {
      @RequestMapping("success")
      //输入success.do进入注册界面
 	 public String register(){
-		System.out.println("success register jsp");
 		return "register";
 		 
 	 }

@@ -56,7 +56,7 @@ create table bbs_reply
 engine=InnoDB charset=utf8
 ;
 
-create table bbs_topic
+create table maple.bbs_topic
 (
 	topicId int(10) auto_increment comment '帖子id'
 		primary key,
@@ -65,12 +65,13 @@ create table bbs_topic
 	postDate datetime not null comment '发表日期',
 	userId int(50) not null comment '发帖人',
 	modelId int(10) not null comment '所在板块id',
-	replyCount int(255) default '0' not null comment '回复次数'
+	replyCount int(255) default '0' not null comment '回复次数',
+	userName varchar(128) null comment '发帖人名字',
+	likeCount int default '0' null comment '点赞量'
 )
-engine=InnoDB charset=utf8
 ;
 
-create table bbs_user
+create table maple.bbs_user
 (
 	userId int(50) auto_increment comment '用户id'
 		primary key,
@@ -80,10 +81,11 @@ create table bbs_user
 	email varchar(100) not null comment 'email',
 	regDate date not null comment '注册日期',
 	role int(10) default '2' not null comment '角色状态',
-	imageAddr varchar(255) null comment '头像',
+	imageAddr varchar(255) default '/images/timg.jpg' null comment '头像',
 	postCount int(255) default '0' not null comment '发帖数',
 	integral int(255) default '0' not null comment '积分'
 )
-engine=InnoDB charset=utf8
 ;
+
+
 

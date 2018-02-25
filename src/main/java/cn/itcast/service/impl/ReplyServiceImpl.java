@@ -63,11 +63,18 @@ public class ReplyServiceImpl implements ReplyService {
         }
         GiveLike updateLike = new GiveLike();
         updateLike.setId(giveLike.getId());
+        Topic topic = new Topic().selectOne(new Condition().eq("topicId",topicId));
+        Integer likeCount = topic.getLikeCount() == 0 ? 0 : topic.getLikeCount();
         if (Objects.equals(giveLike.getLikeState(), 1)) {
             updateLike.setLikeState(0);
+            int result = likeCount - 1;
+            topic.setLikeCount(result < 0 ? 0 : result);
+            new Topic().updateById();
             return updateLike.updateById();
         } else {
             updateLike.setLikeState(1);
+            topic.setLikeCount(likeCount + 1);
+            new Topic().updateById();
             return updateLike.updateById();
         }
 

@@ -34,7 +34,6 @@ if (session.getAttribute("userName") == null){
             <ul class="nav nav-pills nav-stacked">
                 <li role="presentation" ><a href="<%=path%>/pages/change-info.jsp">资料修改</a></li>
                 <li role="presentation" class="active"><a href="<%=path%>/pages/mypost.jsp">我的帖子</a></li>
-                <li role="presentation"><a href="<%=path%>/pages/records.jsp">我的留言
                 </a></li>
                 <!--<li role="presentation"><a href="#">Messages</a></li>-->
             </ul>

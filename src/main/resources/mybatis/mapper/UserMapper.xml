@@ -15,7 +15,7 @@ select * from bbs_user where userId=#{id}
 </select>
  <!-- 用户注册 -->
 <insert id="addUser" parameterType="cn.itcast.pojo.User">
- insert into bbs_user(userId,userName,userPassword,email,regDate) value(#{userId},#{userName},#{userPassword},#{email},now())
+ insert into bbs_user(userId,userName,userPassword,userSex,email,regDate) value(#{userId},#{userName},#{userPassword},#{userSex},#{email},now())
 </insert>
 
 <!-- 检查邮箱存在 -->
@@ -31,19 +31,19 @@ select * from bbs_user where userId=#{id}
     update bbs_user
     <set >
     
-      <if test="_parameter != null" >
+      <if test="userName != null" >
         userName = #{userName,jdbcType=VARCHAR},
       </if>
-      <if test="_parameter != null" >
+      <if test="email != null" >
          email = #{email,jdbcType=VARCHAR},
       </if>
-      <if test="_parameter != null" >
+      <if test="userSex != null" >
          userSex = #{userSex,jdbcType=VARCHAR},
       </if>
-      <if test="_parameter != null" >
+      <if test="userPassword != null" >
          userPassword = #{userPassword,jdbcType=VARCHAR},
       </if>
-       <if test="_parameter != null" >
+       <if test="imageAddr != null" >
         imageAddr = #{imageAddr,jdbcType=BLOB},
       </if>
     </set>

@@ -1,7 +1,6 @@
 package cn.itcast.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -27,7 +26,7 @@ import cn.itcast.service.UserService;
 @Controller
 public class UserController {
     @Resource
-    private UserService UserService;
+    private UserService userService;
 
 
     @PostMapping("login")
@@ -38,13 +37,13 @@ public class UserController {
         if(StringUtils.isEmpty(email) || StringUtils.isEmpty(userPassword)){
             return ResultVO.error("请输入账号密码");
         }
-        if(!UserService.checkEmail(email)){
+        if(!userService.checkEmail(email)){
             return ResultVO.error("账号不存在");
         }
-        if(!Objects.equals(UserService.checkPwd(email),userPassword)){
+        if(!Objects.equals(userService.checkPwd(email),userPassword)){
             return ResultVO.error("密码错误");
         }
-        User User = UserService.findUserByEmail(email);
+        User User = userService.findUserByEmail(email);
         String userName = User.getUserName();
         String userSex = User.getUserSex();
         Integer userId = User.getUserId();
@@ -71,11 +70,11 @@ public class UserController {
     @RequestMapping("emailloginsuccess")
     public String emailloginsuccess(HttpServletRequest request) {
         String email = request.getParameter("email");
-        User User = UserService.findUserByEmail(email);
+        User User = userService.findUserByEmail(email);
         String userName = User.getUserName();
         HttpSession session = request.getSession(true);
         session.setAttribute("userName", userName);
-        if (UserService.checkEmail(email)) {
+        if (userService.checkEmail(email)) {
 
             return "index";
         } else {return "register";}
@@ -87,16 +86,18 @@ public class UserController {
         String email = request.getParameter("email");
         String userName = request.getParameter("userName");
         String userPassword = request.getParameter("userPassword");
-        User User = new User();
-        User.setEmail(email);
-        User.setUserName(userName);
-        User.setUserPassword(userPassword);
-        if (UserService.checkEmail(email)) {
+        String userSex = request.getParameter("userSex");
+        User user = new User();
+        user.setEmail(email);
+        user.setUserName(userName);
+        user.setUserPassword(userPassword);
+        user.setUserSex(userSex);
+        if (userService.checkEmail(email)) {
             System.out.println("邮箱已注册！请直接登陆！");
             return "test";
 
         } else {
-            UserService.addUser(User);
+            userService.addUser(user);
             System.out.println("注册成功，请登陆！");
             return "test";
         }
@@ -114,6 +115,15 @@ public class UserController {
     @RequestMapping("setInfo")
     public String setInfo() {
         return null;
+    }
+
+
+    @RequestMapping("toUpdateUser")
+    public String toUpdateUser(HttpServletRequest request) {
+        String email = (String) request.getSession().getAttribute("email");
+        User user = userService.findUserByEmail(email);
+        request.setAttribute("user",user);
+        return "change-info";
     }
 
     //信息修改后如果修改的是密码需要重新登陆，其他不需要
@@ -150,15 +160,19 @@ public class UserController {
         User.setUserPassword(userPassword);
         User.setUserSex(userSex);
         User.setImageAddr(newFileName);
-//        UserService.updateUser(User);
+        userService.updateUser(User);
+        String emailSession = (String) request.getSession().getAttribute("email");
+        User newUser = userService.findUserByEmail(emailSession);
+        session.setAttribute("userName",newUser.getUserName());
+        session.setAttribute("userSex",newUser.getUserSex());
+        session.setAttribute("email",newUser.getEmail());
 
         String oldPassword = (String) request.getSession().getAttribute("oldPassword");
         if (oldPassword.equals(userPassword)){
-            response.sendRedirect("pages/change-info.jsp");
+            return "redirect:toUpdateUser";
         }else {
-            session.removeAttribute("userName");
+            return "redirect:login";
         }
-        return "test";
 
     }
 

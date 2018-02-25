@@ -40,8 +40,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
          <li><a href="<%=path%>/allIndex.do">首页</a></li>
           
           <li><a href="<%=request.getContextPath() %>/showmodel.do">模块分类</a></li>
-          <li><a href="<%=request.getContextPath() %>/more.action?type=-1&&page=1">论坛新帖</a></li>
-          <li><a href="<%=request.getContextPath() %>/more.action?type=-2&&page=1">精华帖</a></li>
+          <li><a href="<%=request.getContextPath() %>/theNewTopic.do">论坛新帖</a></li>
+          <li><a href="<%=request.getContextPath() %>/theHotTopic.do">精华帖</a></li>
       </ul>
    </div>
            <% 
@@ -65,10 +65,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                              <b class="caret"></b> 
                          
                           <ul class="dropdown-menu">
-                            <li><a href="<%=path%>/pages/change-info.jsp">个人信息</a></li>
+                            <li><a href="<%=path%>/toUpdateUser.do">个人信息</a></li>
                             <li><a href="<%=path+"/showMyTopic.do"%>">我的帖子</a></li>
-                            <li><a href="<%=path+"/pages/myMessage.jsp"%>">我的留言</a></li>
-                            <li><a href="<%=request.getContextPath()%>/pages/publish_post.jsp">我要发帖</a></li>
+                            <li><a href="<%=request.getContextPath()%>/toNewPost.do">我要发帖</a></li>
                             <li class="divider"></li>
                             <li><a href="<%=request.getContextPath()%>/exit.do">退出登陆</a></li>
                         </ul>
@@ -99,13 +98,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <p class="navbar-text navbar-right">尊敬的${userName}您好！</p>
             <%}%>
              
-                <form class="navbar-form navbar-right" role="search" action="<%=request.getContextPath()%>/search.action">
-		       <div class="input-group">
-	         <input type="text" class="form-control" name="keywords" placeholder="search">
-	        <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span> </span>
-	     		 </div>
-      		</form> 
+                <form id="searchForm" class="navbar-form navbar-right" role="search" action="<%=request.getContextPath()%>/search.do">
+		            <input class="input-group">
+	                <input type="text" class="form-control" name="content" placeholder="search">
+                   <input type="submit" onclick="doSubmit()"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></input>
+      		</form>
             </nav>
-  
+  <script type="text/javascript">
+      function doSubmit() {
+          $("#searchForm").submit();
+      }
+  </script>
   </body>
 </html>

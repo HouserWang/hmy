@@ -1,54 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.itcast.mapper.TopicMapper">
- 
- 
-<insert id="postTopic" parameterType="cn.itcast.pojo.Topic">
- 
- <selectKey keyProperty="topicId" resultType="int">
-  select last_insert_id()
- </selectKey> 
- insert into bbs_topic(title,content,postDate,userId,modelId) value(#{title},#{content},now(),#{userId},#{modelId})
-</insert>
 
-<select id="showallTopic"  resultType="cn.itcast.pojo.Topic">
+
+    <insert id="postTopic" parameterType="cn.itcast.pojo.Topic">
+
+        <selectKey keyProperty="topicId" resultType="int">
+            select last_insert_id()
+        </selectKey>
+        insert into bbs_topic(title,content,postDate,userId,modelId,userName)
+        value(#{title},#{content},now(),#{userId},#{modelId},#{userName})
+    </insert>
+
+    <select id="showallTopic" resultType="cn.itcast.pojo.Topic">
 select * from bbs_topic t order by t.postDate desc limit 6
 </select>
 
-<select id="showTopic" parameterType="java.lang.Integer" resultType="cn.itcast.pojo.Topic">
+    <select id="showTopic" parameterType="java.lang.Integer" resultType="cn.itcast.pojo.Topic">
 select * from bbs_topic where topicId=#{id}
 </select>
 
-<select id="showMyTopic" parameterType="java.lang.Integer" resultType="cn.itcast.pojo.Topic">
+    <select id="showMyTopic" parameterType="java.lang.Integer" resultType="cn.itcast.pojo.Topic">
 select * from bbs_topic where userId=#{id}
 </select>
 
-<update id="incReplyCount" parameterType="java.lang.Integer">
+    <update id="incReplyCount" parameterType="java.lang.Integer">
   UPDATE bbs_topic
   SET replyCount = replyCount + 1
     WHERE topicId = #{topicId}
 </update>
 
 
-<resultMap type="cn.itcast.pojo.TopicExt" id="TopicAndUser">
- <!-- 帖子信息 -->
-  <id column="topicId" property="topicId"/>
-  <result column="title" property="title"/>
-  <result column="content" property="content"/>
-  <result column="userId" property="userId"/>
-  <result column="postDate" property="postDate"/>
-  <result column="modelId" property="modelId"/>
-  <result column="replyCount" property="replyCount"/>
- <!-- 用户信息 -->
-  <association property="user" javaType="cn.itcast.pojo.User">
-  <id column="userId" property="userId"/>
-  <result column="userName" property="userName"/>
-  <result column="userSex" property="userSex"/>
-  </association>
-</resultMap>
-<select id="findTopicAndUser" parameterType="java.lang.Integer" resultMap="TopicAndUser">
-select `bbs_topic`.`content` AS `content`,`bbs_topic`.`modelId` AS `modelId`,`bbs_topic`.`postDate` AS `postDate`,`bbs_topic`.`replyCount` AS `replyCount`,`bbs_topic`.`title` AS `title`,`bbs_topic`.`topicId` AS `topicId`,`bbs_topic`.`userId` AS `userId`,`bbs_user`.`userName` AS `userName`,`bbs_user`.`userSex` AS `userSex` from (`bbs_topic` join `bbs_user`) where ((`bbs_topic`.`userId` = `bbs_user`.`userId`) and (`bbs_topic`.`topicId` = #{id}))
-</select>
+    <resultMap type="cn.itcast.pojo.TopicExt" id="TopicAndUser">
+        <!-- 帖子信息 -->
+        <id column="topicId" property="topicId"/>
+        <result column="title" property="title"/>
+        <result column="content" property="content"/>
+        <result column="userId" property="userId"/>
+        <result column="postDate" property="postDate"/>
+        <result column="modelId" property="modelId"/>
+        <result column="replyCount" property="replyCount"/>
+        <!-- 用户信息 -->
+        <association property="user" javaType="cn.itcast.pojo.User">
+            <id column="userId" property="userId"/>
+            <result column="userName" property="userName"/>
+            <result column="userSex" property="userSex"/>
+        </association>
+    </resultMap>
+    <select id="findTopicAndUser" parameterType="java.lang.Integer" resultMap="TopicAndUser">
+      select `bbs_topic`.`content` AS `content`,`bbs_topic`.`modelId` AS `modelId`,`bbs_topic`.`postDate` AS `postDate`,`bbs_topic`.`replyCount` AS `replyCount`,`bbs_topic`.`title` AS `title`,`bbs_topic`.`topicId` AS `topicId`,`bbs_topic`.`userId` AS `userId`,`bbs_user`.`userName` AS `userName`,`bbs_user`.`userSex` AS `userSex` from (`bbs_topic` join `bbs_user`) where ((`bbs_topic`.`userId` = `bbs_user`.`userId`) and (`bbs_topic`.`topicId` = #{id}))
+    </select>
+    <select id="search" parameterType="java.lang.String" resultType="cn.itcast.pojo.Topic">
+        SELECT *
+        FROM bbs_topic p
+        WHERE p.title LIKE  "%"#{content}"%"
+        UNION
+        SELECT p.*
+        FROM bbs_topic p
+        JOIN bbs_user u ON p.userId = u.userId
+        WHERE u.userName LIKE "%"#{content}"%"
+    </select>
 </mapper>

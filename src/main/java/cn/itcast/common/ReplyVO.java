@@ -7,6 +7,24 @@ public class ReplyVO {
     private String replyTime;
     private String userName;
     private String sex;
+    private String imageAttr;
+    private Integer number;
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
+    }
+
+    public String getImageAttr() {
+        return imageAttr;
+    }
+
+    public void setImageAttr(String imageAttr) {
+        this.imageAttr = imageAttr;
+    }
 
     public String getUserName() {
         return userName;

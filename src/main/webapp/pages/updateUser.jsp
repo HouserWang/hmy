@@ -83,7 +83,7 @@
 
                         <div class="form-group">
                             <label for="name">用户名</label>
-                            <input id="username" type="text" class="form-control" name="userName" id="name" width="200px" height="80px" value="${userName }"
+                            <input id="userName" type="text" class="form-control" name="userName" id="name" width="200px" height="80px" value="${userName }"
                                    placeholder="请输入名称"> <p class="help-block"> </p>
                         </div>
 
@@ -101,12 +101,12 @@
                         <%--</dl>--%>
 
                         <dl class="form-group">
-                            <dt><label for="user_profile_company">密码</label></dt>
-                            <dd><input class="form-control" id="password" name="userPassword" size="30" type="password" width="200px" value="${userPassword}"/></dd>
+                            <dt><label for="userPassword">密码</label></dt>
+                            <dd><input class="form-control" id="userPassword" name="userPassword" size="30" type="password" width="200px" value="${userPassword}"/></dd>
                         </dl>
                         <dl class="form-group">
-                            <dt><label for="user_profile_location">重复密码</label></dt>
-                            <dd><input class="form-control" id="confirm_password" name="userPassword" size="30" type="password" width="200px" /></dd>
+                            <dt><label for="confirm_password">重复密码</label></dt>
+                            <dd><input class="form-control" id="confirm_password" name="confirm_password" size="30" type="password" width="200px" /></dd>
                         </dl>
                         <input type="submit" value="保存">
                         <input type="button" value="取消" >
@@ -130,33 +130,25 @@
     $(function(){
         $("#form1").validate({
             rules:{
-                username:{
+                userName:{
                     required:true
                 },
-                email:{
-                    required:true,
-                    email:true
-                },
-                password:{
+                userPassword:{
                     rangelength:[6,20]
                 },
                 confirm_password:{
-                    equalTo:"#password"
+                    equalTo:"#userPassword"
                 }
             },
             messages:{
-                username:{
+                userName:{
                     required:"必填"
                 },
-                email:{
-                    required:"必填",
-                    email:"E-Mail格式不正确"
-                },
-                password:{
+                userPassword:{
                     rangelength: $.validator.format("密码最小长度:{0}, 最大长度:{1}。")
                 },
                 confirm_password:{
-                    equalTo:"两次密码输入不一致"
+                    equalTo:"两次密码不一致"
                 }
             }
         });

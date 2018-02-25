@@ -16,6 +16,25 @@ public class Topic extends Model<Topic>{
 	private Integer userId;
 	private Integer modelId;
 	private Integer replyCount;
+	private String userName;
+	private Integer likeCount;
+
+	public Integer getLikeCount() {
+		return likeCount;
+	}
+
+	public void setLikeCount(Integer likeCount) {
+		this.likeCount = likeCount;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public Integer getTopicId() {
 		return topicId;
 	}

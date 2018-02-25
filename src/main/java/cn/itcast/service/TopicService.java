@@ -26,4 +26,10 @@ public interface TopicService {
     Integer findLikeCount(Integer topicId);
 
     Page<Topic> showModelTopics(Page<Topic> page , Integer modelId);
+
+    Page<Topic> search(Page<Topic> page, String content);
+
+    Page<Topic> findNewTopics(Page<Topic> page);
+
+    Page<Topic> findHotTopics(Page<Topic> page);
 }

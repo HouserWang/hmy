@@ -71,31 +71,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<%--<form id="form1" action="<%=path%>/updateUser.do" method="post" enctype="multipart/form-data">--%>
                     <form id="form1" action="<%=path%>/pages/updateUser.jsp" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <a href="photo.do"><img class="avatar left" src="${imageAddr}" id="imgPreview" height="70px;"/></a><%--请上传你的头像<br/>--%>
+                            <a href="photo.do"><img class="avatar left" src="${user.imageAddr}" id="imgPreview" height="70px;"/></a><%--请上传你的头像<br/>--%>
                         </div>
                         <%--<input type="file" id="inputfile" accept="image/*" name="imageAddr" style="height:20px;" value=""><br/>--%>
 
                         <div class="form-group">
                             <label for="name">用户名</label>
-                            <input id="username" type="text" class="form-control" name="userName" id="name" width="200px" height="80px" value="${userName }"
-                                   placeholder="请输入名称"> <p class="help-block"> </p>
+                            <input id="username" type="text" class="form-control" name="userName" id="name" width="200px" height="80px" value="${user.userName }"
+                                   placeholder="请输入名称" disabled="disabled"> <p class="help-block"> </p>
                         </div>
 
                         <div class="form-group">
                             <label for="name">性 别</label><br/>
-                            <input id="userSex" type="text" class="form-control"   name="userSex" size="30" value="${userSex}" />
+                            <input id="userSex" type="text" class="form-control"   name="userSex" size="30" value="${user.userSex}" disabled="disabled"/>
                         </div>
 
 
                         <dl class="form-group">
                             <dt><label for="user_profile_blog">邮箱</label></dt>
-                            <dd><input id="email" type="email" class="form-control" id="user_profile_blog" name="email" size="30" value="${email}" />
+                            <dd><input id="email" type="email" class="form-control" id="user_profile_blog" name="email" size="30" value="${user.email}" disabled="disabled"/>
                             <p class="help-block"> </p>
                             </dd>
                         </dl>
                         <dl class="form-group">
                             <dt><label for="user_profile_company">密码</label></dt>
-                            <dd><input class="form-control" id="password" name="userPassword" size="30" type="password" width="200px" value="${userPassword}"/></dd>
+                            <dd><input class="form-control" id="password" name="userPassword" size="30" type="password" width="200px" value="${user.userPassword}" disabled="disabled"/></dd>
                         </dl>
                         <%--<dl class="form-group">
                             <dt><label for="user_profile_location">重复密码</label></dt>

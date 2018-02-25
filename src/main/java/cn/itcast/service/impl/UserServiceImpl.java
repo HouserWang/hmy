@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 
 import cn.itcast.pojo.User;
+import com.baomidou.mybatisplus.mapper.Condition;
 import org.springframework.stereotype.Service;
 
 import cn.itcast.mapper.UserMapper;
@@ -32,7 +33,9 @@ public class UserServiceImpl implements UserService {
 	public void updateUser(User User) {
 		userMapper.updateUser(User);
 		
-	} 
+	}
+
+
 
 	@Override
 	public String checkPwd(String email) {

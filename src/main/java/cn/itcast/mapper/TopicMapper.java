@@ -17,4 +17,5 @@ public interface TopicMapper extends BaseMapper<Topic>{
 	 public List<Topic> fenye(String hql, int offset, int pagesize);
 	 public TopicExt findTopicAndUser(Integer topicId);
 	 void incReplyCount(Integer topicId);
+	 List<Topic> search(String content);
 }

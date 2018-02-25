@@ -205,9 +205,7 @@ remain.value = max - used.value;
             <th>选择版块</th>
             <td>
                 <div id="change" style="float:left">
-                 <span style="float:right;line-height:35px;"><a href="showmodel.do">请选择所要发帖的版块</a> </span>
-                 <%List modellist=(List<Model>)request.getAttribute("modelList"); %>
-                 <c:forEach items="${modelList}" var="item" > ${item.getModelName()}&nbsp;&nbsp; </c:forEach>
+                 <span style="float:right;line-height:35px;">请选择所要发帖的版块</span>
                  <select name="change">
                    <c:forEach var="item" items="${modelList}">
                    <option  name="modelId" value="${item.getModelId()}">${item.getModelName()}</option>
