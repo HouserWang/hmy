@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </dl>
                         <dl class="form-group">
                             <dt><label for="user_profile_company">密码</label></dt>
-                            <dd><input class="form-control" id="password" name="userPassword" size="30" type="password" width="200px" value="${user.userPassword}" disabled="disabled"/></dd>
+                            <dd><input class="form-control" id="password" name="userPassword" size="30" type="text" width="200px" value="${user.userPassword}" disabled="disabled"/></dd>
                         </dl>
                         <%--<dl class="form-group">
                             <dt><label for="user_profile_location">重复密码</label></dt>

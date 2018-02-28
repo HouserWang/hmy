@@ -88,7 +88,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <li ><a href="<%=path%>/pages/addNotice.jsp">发布公告</a></li>
                             <li><a href="<%=path%>/pages/create_model.jsp">创建模块</a></li>
 			                <li  ><a href="<%=path%>/manage/change-admin.jsp">资料修改</a></li>
-			                <li><a href="<%=path%>/manage/bestpost.jsp">精华帖请求</a></li>
 			                <li><a href="<%=path%>/manage/limit.jsp">封锁用户</a></li>
 			                 <li class="divider"></li>
                             <li><a href="<%=path+"/exit.do"%>">退出登陆</a></li>

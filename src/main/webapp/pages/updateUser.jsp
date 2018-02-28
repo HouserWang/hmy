@@ -89,7 +89,17 @@
 
                         <div class="form-group">
                             <label for="name">性 别</label><br/>
-                            <input id="userSex" type="text" class="form-control"   name="userSex" size="30" value="${userSex}" />
+                            <input class="hide" id="userSex" type="text" class="form-control"   name="userSex" size="30" value="${userSex}" />
+                            <select id="sex" style="width:90px;">
+                                <option value ="男">男</option>
+                                <option value ="女">女</option>
+                            </select>
+                            <script>
+                                $("#sex").val($("#userSex").val());
+                                $("#sex").bind('change',function () {
+                                  $("#userSex").val($("#sex").val());
+                                })
+                            </script>
                         </div>
 
 
@@ -102,14 +112,14 @@
 
                         <dl class="form-group">
                             <dt><label for="userPassword">密码</label></dt>
-                            <dd><input class="form-control" id="userPassword" name="userPassword" size="30" type="password" width="200px" value="${userPassword}"/></dd>
+                            <dd><input class="form-control" id="userPassword" name="userPassword" size="30" type="text" width="200px" value="${userPassword}"/></dd>
                         </dl>
-                        <dl class="form-group">
+                        <%--<dl class="form-group">
                             <dt><label for="confirm_password">重复密码</label></dt>
                             <dd><input class="form-control" id="confirm_password" name="confirm_password" size="30" type="password" width="200px" /></dd>
-                        </dl>
+                        </dl>--%>
                         <input type="submit" value="保存">
-                        <input type="button" value="取消" >
+                        <a href="pages/updateUser.jsp"><input type="button" value="取消"></a>
                     </form>
                 </div>
             </div>
