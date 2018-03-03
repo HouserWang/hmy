@@ -3,6 +3,7 @@ package cn.itcast.dao;
 import cn.itcast.domain.User;
 import cn.itcast.domain.UserExample;
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {

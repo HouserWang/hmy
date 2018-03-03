@@ -23,7 +23,7 @@ import java.util.Objects;
 
 @Controller
 
-public class TopicController {
+public class TopicController extends BaseController<Topic>{
     @Resource
     private TopicService topicService;
     @Resource
@@ -110,9 +110,7 @@ public class TopicController {
     public String showMyTopic(HttpServletRequest request) {
         HttpSession session = request.getSession(true);
         Integer userId = (Integer) session.getAttribute("userId");
-        Integer current = (Integer) request.getAttribute("current");
-        Integer size = (Integer) request.getAttribute("size");
-        Page<Topic> page = new Page<>(Objects.isNull(current) ? 1 : current, Objects.isNull(size) ? 10 : size);
+        Page<Topic> page = newPage(request);
         Page<Topic> pager = topicService.showMyTopic(page, userId);
         request.setAttribute("pager", pager);
         return "myPost";
@@ -129,20 +127,17 @@ public class TopicController {
 
     @GetMapping("showModelPosts")
     public String showModelPosts(Integer modelId, String modelName, HttpServletRequest request) {
-        Integer current = (Integer) request.getAttribute("current");
-        Integer size = (Integer) request.getAttribute("size");
-        Page<Topic> page = new Page<>(Objects.isNull(current) ? 1 : current, Objects.isNull(size) ? 10 : size);
+        Page<Topic> page = newPage(request);
         Page<Topic> pager = topicService.showModelTopics(page, modelId);
         request.setAttribute("pager", pager);
         request.setAttribute("modelName", modelName);
+        request.setAttribute("modelId", modelId);
         return "allPosts";
     }
 
     @GetMapping("theNewTopic")
     public String theNewTopic(HttpServletRequest request){
-        Integer current = (Integer) request.getAttribute("current");
-        Integer size = (Integer) request.getAttribute("size");
-        Page<Topic> page = new Page<>(Objects.isNull(current) ? 1 : current, Objects.isNull(size) ? 10 : size);
+        Page<Topic> page = newPage(request);
         Page<Topic> newTopics = topicService.findNewTopics(page);
         request.setAttribute("pager", newTopics);
         request.setAttribute("modelName", "近一天新帖");
@@ -151,9 +146,7 @@ public class TopicController {
 
     @GetMapping("theHotTopic")
     public String theHotTopic(HttpServletRequest request){
-        Integer current = (Integer) request.getAttribute("current");
-        Integer size = (Integer) request.getAttribute("size");
-        Page<Topic> page = new Page<>(Objects.isNull(current) ? 1 : current, Objects.isNull(size) ? 10 : size);
+        Page<Topic> page = newPage(request);
         Page<Topic> hotTopics = topicService.findHotTopics(page);
         request.setAttribute("pager", hotTopics);
         request.setAttribute("modelName", "点赞数大于10的帖子");

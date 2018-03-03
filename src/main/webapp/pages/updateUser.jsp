@@ -59,7 +59,7 @@
     <div class="row">
         <div class="col-xs-3">
             <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" class="active"><a href="<%=path%>/pages/change-info.jsp">修改个人信息</a></li>
+                <li role="presentation" class="active"><a href="#">修改个人信息</a></li>
 
             </ul>
 

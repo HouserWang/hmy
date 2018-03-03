@@ -46,7 +46,22 @@ select * from bbs_user where userId=#{id}
        <if test="imageAddr != null" >
         imageAddr = #{imageAddr,jdbcType=BLOB},
       </if>
+        <if test="ifPostTopic != null" >
+            ifPostTopic = #{ifPostTopic,jdbcType=INTEGER},
+        </if>
     </set>
-    where userId = #{userId,jdbcType=VARCHAR}
+    where userId = #{userId,jdbcType=INTEGER}
   </update>
+
+    <delete id="deleteUser">
+        delete from bbs_user where userId = #{userId}
+    </delete>
+
+    <delete id="deleteTopic">
+        delete from bbs_topic where topicId = #{topicId}
+    </delete>
+
+    <delete id="deleteReply">
+        delete from bbs_reply where replyId = #{replyId}
+    </delete>
 </mapper>

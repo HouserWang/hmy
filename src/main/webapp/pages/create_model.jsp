@@ -32,17 +32,17 @@ return ;
   <body>
     <jsp:include page="header.jsp"/>
   <div class="container" style="margin-top: 80px">
-    <div class="row">
-        <div class="col-xs-3">
-            <ul class="nav nav-pills nav-stacked">
-                           <li ><a href="manage/Notice.jsp">发布公告</a></li>
-                            <li><a href="pages/create_model.jsp">创建模块</a></li>
-			                <li  ><a href="pages/change-admin.jsp">资料修改</a></li>
-			                <li><a href=" manage/bestpost.jsp">精华帖请求</a></li>
-			                <li><a href=" manage/limit.jsp">封锁用户</a></li>
-                <!--<li role="presentation"><a href="#">Messages</a></li>-->
-            </ul>
-        </div>
+    <%--<div class="row">--%>
+        <%--<div class="col-xs-3">--%>
+            <%--<ul class="nav nav-pills nav-stacked">--%>
+                           <%--<li ><a href="manage/Notice.jsp">发布公告</a></li>--%>
+                            <%--<li><a href="pages/create_model.jsp">创建模块</a></li>--%>
+			                <%--<li  ><a href="pages/change-admin.jsp">资料修改</a></li>--%>
+			                <%--<li><a href=" manage/bestpost.jsp">精华帖请求</a></li>--%>
+			                <%--<li><a href=" manage/limit.jsp">封锁用户</a></li>--%>
+                <%--<!--<li role="presentation"><a href="#">Messages</a></li>-->--%>
+            <%--</ul>--%>
+        <%--</div>--%>
 
   <div class="col-md-9">
 

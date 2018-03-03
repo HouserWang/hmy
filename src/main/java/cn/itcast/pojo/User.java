@@ -18,6 +18,15 @@ public class User extends Model<User> {
     private String imageAddr;
     private Integer postCount;
     private Integer integral;
+    private Integer ifPostTopic;
+
+    public Integer getIfPostTopic() {
+        return ifPostTopic;
+    }
+
+    public void setIfPostTopic(Integer ifPostTopic) {
+        this.ifPostTopic = ifPostTopic;
+    }
 
     public Integer getUserId() {
         return userId;
@@ -29,11 +38,19 @@ public class User extends Model<User> {
 
     @Override
     public String toString() {
-        return "User [userId=" + userId + ", userName=" + userName
-                + ", userPassword=" + userPassword + ", userSex=" + userSex
-                + ", email=" + email + ", regDate=" + regDate + ", role=" + role
-                + ", imageAddr=" + imageAddr + ", postCount=" + postCount
-                + ", integral=" + integral + "]";
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userSex='" + userSex + '\'' +
+                ", email='" + email + '\'' +
+                ", regDate=" + regDate +
+                ", role=" + role +
+                ", imageAddr='" + imageAddr + '\'' +
+                ", postCount=" + postCount +
+                ", integral=" + integral +
+                ", ifPostTopic=" + ifPostTopic +
+                '}';
     }
 
     public String getUserName() {

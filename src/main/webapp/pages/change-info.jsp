@@ -50,14 +50,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      <jsp:include page="header.jsp"/>
      
       <div class="container" style="margin-top: 30px">
-    <div class="row">
-        <div class="col-xs-3">
-            <ul class="nav nav-pills nav-stacked">
-                <li role="presentation" class="active"><a href="<%=path%>/pages/change-info.jsp">个人信息</a></li>
-                <li role="presentation"><a href="<%=path%>/showMyTopic.do">我的帖子</a></li>
-            </ul>
+    <%--<div class="row">--%>
+        <%--<div class="col-xs-3">--%>
+            <%--<ul class="nav nav-pills nav-stacked">--%>
+                <%--<li role="presentation" class="active"><a href="#">个人信息</a></li>--%>
+                <%--<li role="presentation"><a href="<%=path%>/showMyTopic.do">我的帖子</a></li>--%>
+            <%--</ul>--%>
 
-        </div>
+        <%--</div>--%>
 
         <div class="col-xs-9">
             <div class="panel panel-default">
