@@ -179,12 +179,13 @@ remain.value = max - used.value;
 <body>
 
  <jsp:include page="header.jsp"/>
- <table class="tb" cellspacing="0" cellpadding="3">
+ <div style="padding: 0px 300px;">
+ <table class="table" cellspacing="0" cellpadding="3" style="border: 1px solid #dddddd;">
   <form method="post" action="postTopic.do?">
     <tr>
             <th>文章标题</th>
             <td>
-                <input required type="text" id="textfile" name="title" style="width:250px;" onKeyDown="gbcount(this.form.title,this.form.totaltitle,this.form.usedtitle,this.form.remaintitle);" onKeyUp="gbcount(this.form.Memo,this.form.totaltitle,this.form.usedtitle,this.form.remaintitle);"/>
+                <input required type="text" id="textfile" name="title" style="width:250px;" class="form-control" onKeyDown="gbcount(this.form.title,this.form.totaltitle,this.form.usedtitle,this.form.remaintitle);" onKeyUp="gbcount(this.form.Memo,this.form.totaltitle,this.form.usedtitle,this.form.remaintitle);"/>
                    <input disabled maxLength="2" name="totaltitle" size="1" value="30" class="inputtext" type="hidden"><!--可用总字数 -->
                    <input disabled maxLength="2" name="usedtitle" size="1" value="0" class="inputtext" type="hidden"><!-- 已用字数 -->                         
                                              剩余字数:<input disabled maxLength="2" name="remaintitle" size="1" value="30" class="inputtext">
@@ -220,11 +221,13 @@ remain.value = max - used.value;
    <tr>
             <th></th>
             <td>
-               	<input type="submit" value="提交"/>
+               	<!--<input type="submit" value="提交" class=""/>-->
+                <button class="btn btn-info">提交</button>
             </td>
   </tr>
   </form>
  </table>
+ </div>
     
         
 

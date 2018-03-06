@@ -108,9 +108,9 @@
 
     <form id="searchForm" class="navbar-form navbar-right" role="search"
           action="<%=request.getContextPath()%>/search.do">
-        <input class="input-group">
+      <!--  <input class="input-group">-->
         <input type="text" class="form-control" name="content" placeholder="search">
-        <input type="submit" onclick="doSubmit()"><span class="glyphicon glyphicon-search"
+        <input type="submit" onclick="doSubmit()" value="搜索" class="btn"><span class="glyphicon glyphicon-search"
                                                         aria-hidden="true"></span></input>
     </form>
 </nav>

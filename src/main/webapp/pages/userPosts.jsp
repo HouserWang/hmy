@@ -38,21 +38,22 @@
                 </div>
 
                 <div class="list-group-item">
-                        <h4 class="list-group-item-heading" style="color:black">
+                        <div class="list-group-item-heading" style="color:black">
                             <c:forEach items="${pager.records}" var="topics">
 
                                 <a href="<%=request.getContextPath()%>/showTopicAndReply.do?topicid=${topics.getTopicId()}"
-                                   class="list-group-item" style="height: 70px;">
+                                   class="list-group-item" style="display: inline-block;width: 94%;">
                                     <h4 class="list-group-item-heading">[${topics.getTitle()}]</h4>
-                                    <p class=" text-right" style="float: right;margin-right: 20px;">
+                                    <p style="float: right;display: block;width: 100%;">
                                         发帖人:${topics.getUserName()}&nbsp;评论量: ${topics.getReplyCount()}&nbsp;发表日期:${topics.getPostDate()}
                                     </p>
                                 </a>
-                    <div style="float: right;margin-right: 30px;">
-                        <input type="button" onclick="deleteUser(${topics.getUserId()})" value="删除">
-                    </div>
+                    <!--<div style="float: right;margin-right: 30px;display: inline-block;">-->
+                        <!--<input type="button" onclick="deleteUser(${topics.getUserId()})" value="删除">-->
+                        <button onclick="deleteUser(${topics.getUserId()})" class="btn btn-info">删除</button>
+                    <!--</div>-->
                             </c:forEach>
-                        </h4>
+                        </div>
 
                 </div>
             </ul>

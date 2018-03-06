@@ -1,4 +1,4 @@
-create table bbs_give_like
+create table maple.bbs_give_like
 (
 	id int(50) auto_increment
 		primary key,
@@ -8,10 +8,10 @@ create table bbs_give_like
 	constraint bbs_give_like_uk
 		unique (topicId, userId)
 )
-comment '点赞表' engine=InnoDB
+comment '点赞表'
 ;
 
-create table bbs_message
+create table maple.bbs_message
 (
 	messageId int(10) auto_increment comment '留言id'
 		primary key,
@@ -19,10 +19,9 @@ create table bbs_message
 	addIp varchar(20) not null comment '标题',
 	time datetime not null comment '留言时间'
 )
-engine=InnoDB charset=utf8
 ;
 
-create table bbs_model
+create table maple.bbs_model
 (
 	modelId int(10) auto_increment comment '模块id'
 		primary key,
@@ -30,10 +29,9 @@ create table bbs_model
 	postsCount int(255) default '0' not null comment '帖子总数',
 	modelDate date not null comment '创建日期'
 )
-engine=InnoDB charset=utf8
 ;
 
-create table bbs_notice
+create table maple.bbs_notice
 (
 	noticeId int(50) auto_increment
 		primary key,
@@ -41,10 +39,9 @@ create table bbs_notice
 	notice varchar(200) not null,
 	noticeMan varchar(18) not null
 )
-engine=InnoDB charset=utf8
 ;
 
-create table bbs_reply
+create table maple.bbs_reply
 (
 	replyId int(50) auto_increment comment '回复id'
 		primary key,
@@ -53,7 +50,6 @@ create table bbs_reply
 	userId int(50) not null comment '回复人',
 	replyTime timestamp default CURRENT_TIMESTAMP not null comment '回复日期'
 )
-engine=InnoDB charset=utf8
 ;
 
 create table maple.bbs_topic
@@ -83,9 +79,8 @@ create table maple.bbs_user
 	role int(10) default '2' not null comment '角色状态',
 	imageAddr varchar(255) default '/images/timg.jpg' null comment '头像',
 	postCount int(255) default '0' not null comment '发帖数',
-	integral int(255) default '0' not null comment '积分'
+	integral int(255) default '0' not null comment '积分',
+	ifPostTopic tinyint default '1' not null comment '是否可以发帖'
 )
 ;
-
-
 
