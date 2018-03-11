@@ -7,6 +7,6 @@ import cn.itcast.pojo.Notice;
 public interface NoticeMapper {
 
 	public List<Notice> showNotice();
-	public void addNotice(Notice Notice);
+	public void addNotice(Notice notice);
 	
 }

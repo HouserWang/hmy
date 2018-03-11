@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  <selectKey keyProperty="noticeId" resultType="java.lang.Integer">
   select last_insert_id()
  </selectKey> 
- insert into bbs_notice(Notice,noticeMan,noticeDate) value(#{Notice},#{noticeMan},now())
+ insert into bbs_notice(notice,noticeMan,noticeDate) value(#{notice},#{noticeMan},now())
 </insert>
 
 <select id="showNotice"  resultType="cn.itcast.pojo.Notice">
