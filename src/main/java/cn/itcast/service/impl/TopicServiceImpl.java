@@ -26,6 +26,14 @@ public class TopicServiceImpl implements TopicService {
     @Resource
     private TopicMapper topicMapper;
 
+    @Override
+    public boolean checkIfPost(Integer userId){
+        User user = new User().selectOne(new Condition().eq("userId", userId));
+        if(Objects.equals(user.getIfPostTopic(),0)){
+            return false;
+        }
+        return true;
+    }
     public void postTopic(Topic Topic) {
         topicMapper.postTopic(Topic);
 

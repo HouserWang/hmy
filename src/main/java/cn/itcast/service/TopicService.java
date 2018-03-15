@@ -32,4 +32,6 @@ public interface TopicService {
     Page<Topic> findNewTopics(Page<Topic> page);
 
     Page<Topic> findHotTopics(Page<Topic> page);
+
+    boolean checkIfPost(Integer userId);
 }

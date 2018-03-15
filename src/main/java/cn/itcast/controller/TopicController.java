@@ -51,13 +51,16 @@ public class TopicController extends BaseController<Topic>{
         HttpSession session = request.getSession(true);
         String userName = (String) session.getAttribute("userName");
         Integer userId = (Integer) session.getAttribute("userId");
+
         Topic topic = new Topic();
         topic.setTitle(title);
         topic.setContent(content);
         topic.setModelId(modelId);
         topic.setUserId(userId);
         topic.setUserName(userName);
-        topicService.postTopic(topic);
+        if(topicService.checkIfPost(userId)){
+            topicService.postTopic(topic);
+        }
         return "test";
 
     }
