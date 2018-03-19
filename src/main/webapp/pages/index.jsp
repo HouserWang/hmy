@@ -94,9 +94,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       direction="up" height="90" scrollamount="1" scrolldelay="100"
                      onMouseOver="this.scrollDelay=500" onMouseOut="this.scrollDelay=1" width="100%">
                        <c:forEach items="${noticeList}" var="Notice" >
-                          <a href="<%=request.getContextPath()%>/showTopicAndReply.do?topicid=${topics.getTopicId()}" class="list-group-item" style="height: 70px;">
+                          <%--<a href="<%=request.getContextPath()%>/shownotice.do?topicid=${topics.getTopicId()}" class="list-group-item" style="height: 70px;">--%>
                             <p class=" text-right" style="float: right;margin-right: 20px;">公告:${Notice.getNotice()}</p>
-                          </a>
+                          <%--</a>--%>
 			           </c:forEach>                                                           
                    </marquee>    
                 </div>

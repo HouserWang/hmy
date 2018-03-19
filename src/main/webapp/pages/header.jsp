@@ -55,8 +55,7 @@
         if (username == null) {
     %>
     <ul class="nav navbar-nav navbar-right User">
-        <li><a href="<%=request.getContextPath()%>/login.do?role=1">admin登录</a></li>
-        <li><a href="<%=request.getContextPath()%>/login.do?role=2">user登录</a></li>
+        <li><a href="<%=request.getContextPath()%>/login.do">登录</a></li>
         <li><a href="<%=request.getContextPath()%>/success.do">注册</a></li>
     </ul>
     <p class="navbar-text navbar-right">尊敬的游客，您好！</p>

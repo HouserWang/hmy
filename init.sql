@@ -1,4 +1,4 @@
-create table maple.bbs_give_like
+create table bbs_give_like
 (
 	id int(50) auto_increment
 		primary key,
@@ -11,7 +11,7 @@ create table maple.bbs_give_like
 comment '点赞表'
 ;
 
-create table maple.bbs_message
+create table bbs_message
 (
 	messageId int(10) auto_increment comment '留言id'
 		primary key,
@@ -21,7 +21,7 @@ create table maple.bbs_message
 )
 ;
 
-create table maple.bbs_model
+create table bbs_model
 (
 	modelId int(10) auto_increment comment '模块id'
 		primary key,
@@ -31,7 +31,7 @@ create table maple.bbs_model
 )
 ;
 
-create table maple.bbs_notice
+create table bbs_notice
 (
 	noticeId int(50) auto_increment
 		primary key,
@@ -41,7 +41,7 @@ create table maple.bbs_notice
 )
 ;
 
-create table maple.bbs_reply
+create table bbs_reply
 (
 	replyId int(50) auto_increment comment '回复id'
 		primary key,
@@ -52,7 +52,7 @@ create table maple.bbs_reply
 )
 ;
 
-create table maple.bbs_topic
+create table bbs_topic
 (
 	topicId int(10) auto_increment comment '帖子id'
 		primary key,
@@ -67,7 +67,7 @@ create table maple.bbs_topic
 )
 ;
 
-create table maple.bbs_user
+create table bbs_user
 (
 	userId int(50) auto_increment comment '用户id'
 		primary key,

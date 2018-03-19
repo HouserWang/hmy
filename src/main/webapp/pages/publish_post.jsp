@@ -164,7 +164,29 @@ remain.value = max - used.value;
                         background-color: #f80;
                         color: #fff;
                     }
-             .inputtext {border:none; background-color: #f5f5f5;}
+        .inputtext {
+            border:none;
+            background-color: #f5f5f5;
+        }
+        .title-img {
+            height: 36px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .title-img >img {
+            height: 36px;
+        }
+        .text-title{
+            width: 100%;
+        }
+        .text-content {
+            width: 100%;
+            height: 100px;
+        }
+        .text-type {
+            width: 100%;
+        }
    </style>
      <script type="text/javascript">
         CKEDITOR.replace('ckeditor', { allowedContent: true });
@@ -182,13 +204,16 @@ remain.value = max - used.value;
  <div style="padding: 0px 300px;">
  <table class="table" cellspacing="0" cellpadding="3" style="border: 1px solid #dddddd;">
   <form method="post" action="postTopic.do?">
+      <tr>
+          <div class="title-img"><img src="https://img.alicdn.com/tfs/TB1MweBjLDH8KJjy1XcXXcpdXXa-114-114.png" />发表新帖子</div>
+      </tr>
     <tr>
             <th>文章标题</th>
             <td>
-                <input required type="text" id="textfile" name="title" style="width:250px;" class="form-control" onKeyDown="gbcount(this.form.title,this.form.totaltitle,this.form.usedtitle,this.form.remaintitle);" onKeyUp="gbcount(this.form.Memo,this.form.totaltitle,this.form.usedtitle,this.form.remaintitle);"/>
+                <input required type="text" id="textfile" name="title" placeholder="请填写标题" class="text-title" onKeyDown="gbcount(this.form.title,this.form.totaltitle,this.form.usedtitle,this.form.remaintitle);" onKeyUp="gbcount(this.form.Memo,this.form.totaltitle,this.form.usedtitle,this.form.remaintitle);"/>
                    <input disabled maxLength="2" name="totaltitle" size="1" value="30" class="inputtext" type="hidden"><!--可用总字数 -->
                    <input disabled maxLength="2" name="usedtitle" size="1" value="0" class="inputtext" type="hidden"><!-- 已用字数 -->                         
-                                             剩余字数:<input disabled maxLength="2" name="remaintitle" size="1" value="30" class="inputtext">
+                                             剩余字数:<input disabled maxLength="2" name="remaintitle" size="1" value="30" class="inputtext" >
                <!--  <span>你还可以输入30个字符</span> -->
                  
            </td>
@@ -196,7 +221,7 @@ remain.value = max - used.value;
     <tr>
             <th>文章内容</th>
             <td>
-            <textarea type="text" class="" name="content" id="ckeditor" onKeyDown="gbcount(this.form.content,this.form.total,this.form.used,this.form.remain);" onKeyUp="gbcount(this.form.Memo,this.form.total,this.form.used,this.form.remain);"></textarea>
+            <textarea type="text" class="text-content" name="content" id="ckeditor" placeholder="请填写文章内容" onKeyDown="gbcount(this.form.content,this.form.total,this.form.used,this.form.remain);" onKeyUp="gbcount(this.form.Memo,this.form.total,this.form.used,this.form.remain);"></textarea>
                    <input disabled maxLength="2" name="total" size="1" value="1000" class="inputtext" type="hidden"><!--可用总字数 -->
                    <input disabled maxLength="2" name="used" size="1" value="0" class="inputtext" type="hidden"><!-- 已用字数 -->                         
                                              剩余字数:<input disabled maxLength="2" name="remain" size="1" value="1000" class="inputtext">
@@ -205,14 +230,14 @@ remain.value = max - used.value;
     <tr>
             <th>选择版块</th>
             <td>
-                <div id="change" style="float:left">
-                 <span style="float:right;line-height:35px;">请选择所要发帖的版块</span>
+                <div id="change" class="text-type">
+
                  <select name="change">
                    <c:forEach var="item" items="${modelList}">
                    <option  name="modelId" value="${item.getModelId()}">${item.getModelName()}</option>
                    </c:forEach>
                  </select>
-                
+                    <span style="line-height:35px;">请选择所要发帖的版块</span>
                  
                 </div>
                 <!-- onChange="submit()" -->  

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.itcast.mapper.UserMapper">
+
+
+<!-- 根据email查找用户 -->
+<select id="findUserByEmail" parameterType="java.lang.String" resultType="cn.itcast.pojo.User">
+select * from bbs_user where email=#{id}
+</select>
+ <!-- 根据id查找用户 -->
+<select id="findUserById" parameterType="java.lang.String" resultType="cn.itcast.pojo.User">
+select * from bbs_user where userId=#{id}
+</select>
+ <!-- 用户注册 -->
+<insert id="addUser" parameterType="cn.itcast.pojo.User">
+ insert into bbs_user(userId,userName,userPassword,userSex,email,regDate) value(#{userId},#{userName},#{userPassword},#{userSex},#{email},now())
+</insert>
+
+<!-- 检查邮箱存在 -->
+<select id="checkEmail" parameterType="java.lang.String"  resultType="java.lang.Integer">
+   select count(*) from bbs_user where email=#{id}
+</select>
+<!--核对密码（邮箱验证之后）-->
+<select id="checkPwd" parameterType="java.lang.String" resultType="java.lang.String">
+ select userPassword from bbs_user where email=#{id}
+</select>
+<!-- 用户信息修改 -->
+<update id="updateUser" parameterType="cn.itcast.pojo.User" >
+    update bbs_user
+    <set >
+    
+      <if test="userName != null" >
+        userName = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+         email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userSex != null" >
+         userSex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null" >
+         userPassword = #{userPassword,jdbcType=VARCHAR},
+      </if>
+       <if test="imageAddr != null" >
+        imageAddr = #{imageAddr,jdbcType=BLOB},
+      </if>
+        <if test="ifPostTopic != null" >
+            ifPostTopic = #{ifPostTopic,jdbcType=INTEGER},
+        </if>
+    </set>
+    where userId = #{userId,jdbcType=INTEGER}
+  </update>
+
+    <delete id="deleteUser">
+        delete from bbs_user where userId = #{userId}
+    </delete>
+
+    <delete id="deleteTopic">
+        delete from bbs_topic where topicId = #{topicId}
+    </delete>
+
+    <delete id="deleteReply">
+        delete from bbs_reply where replyId = #{replyId}
+    </delete>
+</mapper>

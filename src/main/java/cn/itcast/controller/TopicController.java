@@ -135,6 +135,7 @@ public class TopicController extends BaseController<Topic>{
         request.setAttribute("pager", pager);
         request.setAttribute("modelName", modelName);
         request.setAttribute("modelId", modelId);
+        request.setAttribute("modelType", "1");
         return "allPosts";
     }
 
@@ -144,6 +145,7 @@ public class TopicController extends BaseController<Topic>{
         Page<Topic> newTopics = topicService.findNewTopics(page);
         request.setAttribute("pager", newTopics);
         request.setAttribute("modelName", "近一天新帖");
+        request.setAttribute("modelType", "2");
         return "allPosts";
     }
 
@@ -153,6 +155,7 @@ public class TopicController extends BaseController<Topic>{
         Page<Topic> hotTopics = topicService.findHotTopics(page);
         request.setAttribute("pager", hotTopics);
         request.setAttribute("modelName", "点赞数大于10的帖子");
+        request.setAttribute("modelType", "3");
         return "allPosts";
     }
 

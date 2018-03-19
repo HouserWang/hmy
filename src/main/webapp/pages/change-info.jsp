@@ -71,7 +71,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<%--<form id="form1" action="<%=path%>/updateUser.do" method="post" enctype="multipart/form-data">--%>
                     <form id="form1" action="<%=path%>/pages/updateUser.jsp" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <a href="photo.do"><img class="avatar left" src="${user.imageAddr}" id="imgPreview" height="70px;"/></a><%--请上传你的头像<br/>--%>
+                            <img class="avatar left" src="${user.imageAddr}" id="imgPreview" height="70px;"/><%--请上传你的头像<br/>--%>
                         </div>
                         <%--<input type="file" id="inputfile" accept="image/*" name="imageAddr" style="height:20px;" value=""><br/>--%>
 
